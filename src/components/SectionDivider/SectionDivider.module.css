@@ -1,0 +1,22 @@
+@import "../../vars.css";
+
+.container {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 220px;
+  margin-top: 220px;
+}
+
+.SectionDivider {
+  width: 120px;
+  height: 10px;
+  border-radius: 10px;
+  fill: linear-gradient(135deg, #3ba03d 0%, #6d9c6e 100%);
+  background: linear-gradient(135deg, #3ba03d 0%, #6d9c6e 100%);
+}
+@media screen and (max-width: 500px) {
+  .container {
+    margin-bottom: 100px;
+    margin-top: 85px;
+  }
+}

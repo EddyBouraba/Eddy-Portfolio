@@ -1,18 +1,15 @@
 [
   {
-    "role": "Software Engineer",
+    "role": "Intégrateur Web",
     "organisation": "OpenClassRoom",
     "startDate": "Janvier, 2023",
     "endDate": "Octobre, 2023",
-    "experiences": ["Worked on Google Maps", "Reduced load times by 50%"],
-    "imageSrc": "history/openclassrooms.jpeg"
-  },
-  {
-    "role": "Software Engineer",
-    "organisation": "OpenClassRoom",
-    "startDate": "Janvier, 2023",
-    "endDate": "Octobre, 2023",
-    "experiences": ["Worked on Google Maps", "Reduced load times by 50%"],
+    "experiences": [
+      "Création de site web grace à React.js",
+      "Mise en place de Redux",
+      "Mise en place d'un rapport d'optimisation et déploiement des solutions retenues.",
+      "Gestion d'appel API"
+    ],
     "imageSrc": "history/openclassrooms.jpeg"
   }
 ]

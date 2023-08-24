@@ -4,6 +4,7 @@ import Hero from "./components/Hero/Hero";
 import SectionDivider from "./components/SectionDivider/SectionDivider";
 import About from "./components/About/About";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import Experience from "./components/Experience/Experience";
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
       <Hero />
       <SectionDivider />
       <About />
+      <SectionDivider />
+      <Experience />
       <ScrollToTop />
     </div>
   );

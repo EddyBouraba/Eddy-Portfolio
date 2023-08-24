@@ -1,0 +1,18 @@
+[
+  {
+    "role": "Software Engineer",
+    "organisation": "OpenClassRoom",
+    "startDate": "Janvier, 2023",
+    "endDate": "Octobre, 2023",
+    "experiences": ["Worked on Google Maps", "Reduced load times by 50%"],
+    "imageSrc": "history/openclassrooms.jpeg"
+  },
+  {
+    "role": "Software Engineer",
+    "organisation": "OpenClassRoom",
+    "startDate": "Janvier, 2023",
+    "endDate": "Octobre, 2023",
+    "experiences": ["Worked on Google Maps", "Reduced load times by 50%"],
+    "imageSrc": "history/openclassrooms.jpeg"
+  }
+]

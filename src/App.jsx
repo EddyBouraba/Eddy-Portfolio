@@ -5,6 +5,7 @@ import SectionDivider from "./components/SectionDivider/SectionDivider";
 import About from "./components/About/About";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import Experience from "./components/Experience/Experience";
+import Projects from "./components/Projects/Projects";
 
 function App() {
   return (
@@ -15,7 +16,9 @@ function App() {
       <About />
       <SectionDivider />
       <Experience />
+      <SectionDivider />
       <ScrollToTop />
+      <Projects />
     </div>
   );
 }

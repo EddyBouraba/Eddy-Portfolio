@@ -11,7 +11,7 @@
     "title": "Print-it",
     "categorie": "#Front-end",
     "imageSrc": "projects/printit-p5.png",
-    "description": "Mise en applications des fondamentaux de JavaScript.",
+    "description": "Implémentation d'éléments HTML dans le projet. Mise en application des fondamentaux de JavaScript afin de créer un slider de photos : sélecteurs, écouteurs d'événements et boucles simples.",
     "skills": ["JavaScript"],
     "source": "https://github.com/EddyBouraba/PrintIn-P5"
   },

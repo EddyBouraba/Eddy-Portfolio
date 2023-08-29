@@ -4,6 +4,8 @@
   color: var(--color-text);
   margin-left: 10%;
   margin-right: 10%;
+  display: flex;
+  flex-direction: column;
 }
 .title {
   font-size: 35px;
@@ -20,4 +22,87 @@
   justify-content: center;
   gap: 15px;
   width: 100%;
+}
+.filterAndProjects {
+  display: flex;
+  width: 100%;
+}
+
+.filter {
+  width: 10%;
+  margin-top: 50px;
+  margin-right: 40px;
+  align-self: flex-start; /* Aligner le filtre à gauche */
+}
+.filter h3 {
+  margin-bottom: 15px;
+  font-size: 30px;
+}
+.categories {
+  font-size: 20px;
+}
+.radio-button {
+  margin-bottom: 5px;
+}
+/* Masquer le bouton radio d'origine */
+.radio-button input[type="radio"] {
+  display: none;
+}
+
+/* Style général du bouton radio personnalisé */
+.radio-button label {
+  display: inline-block;
+  position: relative;
+  padding-left: 30px; /* espace pour le bouton radio personnalisé */
+  cursor: pointer;
+  line-height: 20px;
+  color: #f3f3ed; /* Couleur initiale du texte */
+  transition: color 0.3s ease-in-out; /* Ajout d'une transition pour la couleur du texte */
+}
+
+.radio-button label::before,
+.radio-button label::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+}
+
+/* cercle extérieur */
+.radio-button label::before {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #555;
+  transition: border-color 0.3s ease-in-out;
+}
+
+/* cercle intérieur : par défaut il est masqué */
+/* Commentez ou supprimez cette partie si vous ne voulez pas de point intérieur 
+.radio-button label::after {
+  width: 14px;
+  height: 13px;
+  top: 5px;
+  left: 5px;
+  background: #3ba03d;
+  opacity: 0;
+}
+*/
+
+/* Style lorsque le bouton radio est sélectionné */
+.radio-button input[type="radio"]:checked + label::before {
+  border: 2px solid #3ba03d; /* Change la couleur de la bordure quand il est coché */
+}
+.radio-button input[type="radio"]:checked + label {
+  color: #3ba03d; /* Change la couleur du texte du label */
+}
+
+/* Style lorsque le bouton radio est survolé */
+.radio-button label:hover::before {
+  border: 2px solid #999;
+}
+@media screen and (max-width: 500px) {
+  .filter {
+    display: none;
+  }
 }

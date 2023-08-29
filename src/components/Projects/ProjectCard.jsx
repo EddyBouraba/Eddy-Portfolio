@@ -24,11 +24,23 @@ const ProjectCard = ({
         })}
       </ul>
       <div className={styles.links}>
-        <a className={styles.link} href={demo}>
-          Demo
-        </a>
-        <a className={styles.link} href={source}>
-          source
+        {demo ? (
+          <a
+            className={styles.link}
+            href={demo}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Demo
+          </a>
+        ) : null}
+        <a
+          className={styles.link}
+          href={source}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Source
         </a>
       </div>
     </div>

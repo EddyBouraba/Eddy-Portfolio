@@ -2,7 +2,7 @@ import styles from "./Footer.module.css";
 import { getImageUrl } from "../../utils";
 const Footer = () => {
   return (
-    <footer className={styles.container}>
+    <footer className={styles.container} id="contact">
       <div className={styles.text}>
         <h2>Contact</h2>
         <p>

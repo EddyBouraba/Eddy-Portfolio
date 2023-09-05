@@ -2,6 +2,8 @@
 import styles from "./Experience.module.css";
 import { getImageUrl } from "../../utils";
 import { useState, useEffect } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import db from "../../firebase";
 
 // Définit une fonction asynchrone pour récupérer les données depuis une API.
 const fetchData = async (url, setData) => {
@@ -20,11 +22,20 @@ const Experience = () => {
   const [history, setHistory] = useState([]);
   const [skills, setSkills] = useState([]);
 
-  // Utilise le hook `useEffect` pour exécuter du code après le premier rendu du composant.
   useEffect(() => {
-    // Appelle la fonction fetchData pour charger les données de "history" et "skills".
-    fetchData("http://localhost:3000/history", setHistory);
-    fetchData("http://localhost:3000/skills", setSkills);
+    const fetchData = async () => {
+      // Récupère les données depuis la collection Firestore "history"
+      const historySnapshot = await getDocs(collection(db, "history"));
+      const historyData = historySnapshot.docs.map((doc) => doc.data());
+      setHistory(historyData);
+
+      // Récupère les données depuis la collection Firestore "skills"
+      const skillsSnapshot = await getDocs(collection(db, "skills"));
+      const skillsData = skillsSnapshot.docs.map((doc) => doc.data());
+      setSkills(skillsData);
+    };
+
+    fetchData();
   }, []);
 
   return (

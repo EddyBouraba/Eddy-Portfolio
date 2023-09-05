@@ -1,27 +1,44 @@
 // Import des dépendances nécessaires et des styles
 import { useState, useEffect } from "react";
+import { getDocs, collection } from "firebase/firestore";
 import styles from "./Projects.module.css";
 import ProjectCard from "./ProjectCard";
+import db from "../../firebase";
 
 const Projects = () => {
-  // État pour stocker les projets récupérés depuis l'API
   const [projects, setProjects] = useState([]);
-
-  // État pour stocker la catégorie actuellement sélectionnée
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   useEffect(() => {
-    // Lorsque le composant est monté, récupère les données des projets depuis l'API
-    fetch("http://localhost:3000/projects")
-      .then((response) => response.json())
-      .then((data) => {
-        // Met à jour l'état avec les projets récupérés
-        setProjects(data);
-      })
-      .catch((error) => {
-        // En cas d'erreur lors de la récupération, log l'erreur
-        console.error("Erreur lors du chargement des projets", error);
-      });
+    // Initialise une variable pour annuler la souscription
+    let isSubscribed = true;
+
+    const fetchProjects = async () => {
+      try {
+        // Accès à la collection "projects" de Firestore
+        const projectsCollection = collection(db, "projects");
+        // Récupération de tous les documents de la collection "projects"
+        const projectsSnapshot = await getDocs(projectsCollection);
+        // Conversion des documents en tableau de données
+        const projectsList = projectsSnapshot.docs.map((doc) => doc.data());
+
+        // Si le composant est toujours monté, mise à jour de l'état des projets
+        if (isSubscribed) {
+          setProjects(projectsList);
+        }
+      } catch (error) {
+        // Si une erreur survient et que le composant est toujours monté, affichage de l'erreur
+        if (isSubscribed) {
+          console.error("Erreur lors du chargement des projets", error);
+        }
+      }
+    };
+
+    fetchProjects();
+
+    return () => {
+      isSubscribed = false;
+    };
   }, []); // Le tableau vide indique que useEffect ne s'exécutera qu'au montage du composant
 
   // Extraction des catégories uniques depuis les projets

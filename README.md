@@ -19,6 +19,4 @@ Que vous soyez un employeur potentiel, un collègue développeur ou simplement u
 
 ```bash
   npm run dev
-  cd src/data
-  json-server --watch db.json
 ```

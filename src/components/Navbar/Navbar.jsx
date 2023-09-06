@@ -7,7 +7,7 @@ const Navbar = () => {
 
   return (
     <nav className={styles.navbar}>
-      <a className={styles.title} href="/">
+      <a className={styles.title}>
         <img
           className={styles.logoHeader}
           src={getImageUrl("logo/logoNoBg.png")}

@@ -1,45 +1,28 @@
 // Import des dépendances nécessaires et des styles
-import { useState, useEffect } from "react";
-import { getDocs, collection } from "firebase/firestore";
+import { useState } from "react";
 import styles from "./Projects.module.css";
 import ProjectCard from "./ProjectCard";
-import db from "../../firebase";
+import useFetch from "../useFetch"; // Import du custom hook
 
 const Projects = () => {
-  const [projects, setProjects] = useState([]);
+  // Utilisation du custom hook pour récupérer les projets
+  const { data: projects, loading, error } = useFetch("projects");
+
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  useEffect(() => {
-    // Initialise une variable pour annuler la souscription
-    let isSubscribed = true;
+  // Si les données sont en cours de chargement, affiche un spinner
+  if (loading) {
+    return (
+      <div className={styles.spinnerContainer}>
+        <div className={styles.spinner}></div>
+      </div>
+    );
+  }
 
-    const fetchProjects = async () => {
-      try {
-        // Accès à la collection "projects" de Firestore
-        const projectsCollection = collection(db, "projects");
-        // Récupération de tous les documents de la collection "projects"
-        const projectsSnapshot = await getDocs(projectsCollection);
-        // Conversion des documents en tableau de données
-        const projectsList = projectsSnapshot.docs.map((doc) => doc.data());
-
-        // Si le composant est toujours monté, mise à jour de l'état des projets
-        if (isSubscribed) {
-          setProjects(projectsList);
-        }
-      } catch (error) {
-        // Si une erreur survient et que le composant est toujours monté, affichage de l'erreur
-        if (isSubscribed) {
-          console.error("Erreur lors du chargement des projets", error);
-        }
-      }
-    };
-
-    fetchProjects();
-
-    return () => {
-      isSubscribed = false;
-    };
-  }, []); // Le tableau vide indique que useEffect ne s'exécutera qu'au montage du composant
+  // Si une erreur s'est produite pendant le chargement des données
+  if (error) {
+    return <p>Erreur lors du chargement des projets: {error}</p>;
+  }
 
   // Extraction des catégories uniques depuis les projets
   const categorie = [

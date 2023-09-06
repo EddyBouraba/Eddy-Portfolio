@@ -4,10 +4,30 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Bienvenue sur le portfolio de Eddy Bouraba. Découvrez mes compétences en développement web, mes projets réalisés et les services que je propose. 
+      Je suis spécialisé en React. Contactez-moi pour discuter de votre prochain projet. "
+    />
+    <!-- Open Graph meta pour Facebook -->
+    <meta property="og:title" content="Eddy Bouraba" />
+    <meta
+      property="og:url"
+      content="https://www.linkedin.com/in/eddy-bouraba-370631288/"
+    />
+    <meta property="og:description" content="mon profil linkedin" />
+    <meta property="og:type" content="website" />
     <title>Eddy Bouraba</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "openingHours": "Mo,Tu,We,Th,FR 10:00-19:00"
+      }
+    </script>
   </body>
 </html>

@@ -5,7 +5,7 @@ import { getImageUrl } from "../../utils";
 function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Montrer la flèche si on descend de 100px ou plus
+  // Montrer la flèche si on descend de 200px ou plus
   const toggleVisibility = useCallback(() => {
     const scrolled =
       window.scrollY ||

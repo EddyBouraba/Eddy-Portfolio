@@ -122,6 +122,14 @@
     transform: rotate(360deg);
   }
 }
+.errorContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  color: var(--color-text);
+  font-size: 24px;
+}
 @media screen and (max-width: 500px) {
   .content {
     flex-direction: column;

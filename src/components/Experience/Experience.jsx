@@ -25,8 +25,11 @@ const Experience = () => {
         <div className={styles.spinner}></div>
       </div>
     );
-  if (historyError) return <p>{historyError}</p>;
-  if (skillsError) return <p>{skillsError}</p>;
+  if (historyError)
+    return <p className={styles.errorContainer}>{historyError}</p>;
+
+  if (skillsError)
+    return <p className={styles.errorContainer}>{skillsError}</p>;
   return (
     <section className={styles.container} id="Experience">
       <h2 className={styles.title}>Expérience</h2>

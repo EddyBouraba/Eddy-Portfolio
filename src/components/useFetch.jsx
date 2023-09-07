@@ -11,14 +11,16 @@ function useFetch(collectionName) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Essayer de récupérer les documents de la collection spécifiée.
-        const snapshot = await getDocs(collection(db, collectionName));
+        setTimeout(async () => {
+          // Essayer de récupérer les documents de la collection spécifiée.
+          const snapshot = await getDocs(collection(db, collectionName));
 
-        // Convertir le snapshot en tableau de données.
-        const allData = snapshot.docs.map((doc) => doc.data());
-        setData(allData);
-        // Mettre à jour l'état `loading` pour indiquer que le chargement est terminé.
-        setLoading(false);
+          // Convertir le snapshot en tableau de données.
+          const allData = snapshot.docs.map((doc) => doc.data());
+          setData(allData);
+          // Mettre à jour l'état `loading` pour indiquer que le chargement est terminé.
+          setLoading(false);
+        }, 3000);
       } catch (error) {
         // En cas d'erreur, mettre à jour l'état `error` avec le message d'erreur.
         setError(error.message);

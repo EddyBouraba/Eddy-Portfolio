@@ -21,7 +21,7 @@ const Projects = () => {
 
   // Si une erreur s'est produite pendant le chargement des données
   if (error) {
-    return <p>Erreur lors du chargement des projets: {error}</p>;
+    return <p>{error}</p>;
   }
 
   // Extraction des catégories uniques depuis les projets

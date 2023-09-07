@@ -3,29 +3,30 @@ import { collection, getDocs } from "firebase/firestore";
 import db from "../firebase";
 
 function useFetch(collectionName) {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // Initialisation des états locaux.
+  const [data, setData] = useState(null); // Pour stocker les données récupérées
+  const [loading, setLoading] = useState(true); // l'état de chargement
+  const [error, setError] = useState(null); // capturer et stocker les erreurs éventuelles
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Simule un temps de chargement de 2 secondes avec setTimeout
-
+        // Essayer de récupérer les documents de la collection spécifiée.
         const snapshot = await getDocs(collection(db, collectionName));
+
+        // Convertir le snapshot en tableau de données.
         const allData = snapshot.docs.map((doc) => doc.data());
         setData(allData);
-        setLoading(false); // Fin du chargement
+        // Mettre à jour l'état `loading` pour indiquer que le chargement est terminé.
+        setLoading(false);
       } catch (error) {
+        // En cas d'erreur, mettre à jour l'état `error` avec le message d'erreur.
         setError(error.message);
-        setLoading(false); // Fin du chargement en cas d'erreur
+        setLoading(false);
       }
     };
-
     fetchData();
-  }, [collectionName]);
-
+  }, [collectionName]); // Réexécuter `useEffect` si `collectionName` change.
   return { data, loading, error };
 }
-
 export default useFetch;

@@ -1,17 +1,22 @@
 import styles from "./Experience.module.css";
 import { getImageUrl } from "../../utils";
-import useFetch from "../useFetch"; // Ajustez le chemin d'importation selon l'emplacement du hook
+import useFetch from "../useFetch";
 
 const Experience = () => {
+  // Utilisation du hook personnalisé useFetch pour récupérer les données de la collection "history".
+  // Renommage des variables pour des raisons de clarté.
   const {
-    data: history,
-    loading: historyLoading,
-    error: historyError,
+    data: history, // Données récupérées, renommées en "history"
+    loading: historyLoading, // État de chargement, renommé en "historyLoading"
+    error: historyError, // État d'erreur, renommé en "historyError"
   } = useFetch("history");
+
+  // Utilisation du même hook pour récupérer les données de la collection "skills".
+  // Renommage des variables pour des raisons de clarté.
   const {
-    data: skills,
-    loading: skillsLoading,
-    error: skillsError,
+    data: skills, // Données récupérées, renommées en "skills"
+    loading: skillsLoading, // État de chargement, renommé en "skillsLoading"
+    error: skillsError, // État d'erreur, renommé en "skillsError"
   } = useFetch("skills");
 
   if (historyLoading || skillsLoading)
@@ -20,9 +25,8 @@ const Experience = () => {
         <div className={styles.spinner}></div>
       </div>
     );
-  if (historyError) return <p>Erreur dans l'historique : {historyError}</p>;
-  if (skillsError) return <p>Erreur dans les compétences : {skillsError}</p>;
-
+  if (historyError) return <p>{historyError}</p>;
+  if (skillsError) return <p>{skillsError}</p>;
   return (
     <section className={styles.container} id="Experience">
       <h2 className={styles.title}>Expérience</h2>

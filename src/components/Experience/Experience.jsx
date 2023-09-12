@@ -1,7 +1,7 @@
 import styles from "./Experience.module.css";
 import { getImageUrl } from "../../utils";
 import useFetch from "../useFetch";
-import Fade from "react-reveal/Fade";
+import { Fade } from "react-awesome-reveal";
 
 const Experience = () => {
   // Utilisation du hook personnalisé useFetch pour récupérer les données de la collection "history".
@@ -33,7 +33,7 @@ const Experience = () => {
     return <p className={styles.errorContainer}>{skillsError}</p>;
   return (
     <section className={styles.container} id="Experience">
-      <Fade bottom duration={1000} delay={500}>
+      <Fade Slide direction="up" duration={1000} delay={300} triggerOnce>
         <h2 className={styles.title}>Expérience</h2>
         <div className={styles.content}>
           <div className={styles.skills}>

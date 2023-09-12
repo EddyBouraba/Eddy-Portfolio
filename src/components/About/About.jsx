@@ -1,11 +1,11 @@
 import { getImageUrl } from "../../utils";
 import styles from "../About/About.module.css";
-import Fade from "react-reveal/Fade";
+import { Fade } from "react-awesome-reveal";
 
 const About = () => {
   return (
     <section id="about" className={styles.container}>
-      <Fade bottom duration={1000} delay={500}>
+      <Fade Slide direction="up" delay={300} triggerOnce>
         <h2 className={styles.title}>À propos</h2>
         <div className={styles.content}>
           <ul className={styles.aboutItems}>

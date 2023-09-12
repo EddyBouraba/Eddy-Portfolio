@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { getImageUrl } from "../../utils";
 import styles from "./Hero.module.css";
-import Fade from "react-reveal/Fade";
 
 const Hero = () => {
   return (

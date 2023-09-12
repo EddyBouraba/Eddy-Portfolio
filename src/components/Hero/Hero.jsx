@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { getImageUrl } from "../../utils";
 import styles from "./Hero.module.css";
+import Fade from "react-reveal/Fade";
 
 const Hero = () => {
   return (
@@ -13,11 +14,13 @@ const Hero = () => {
           portfolio pour découvrir l'étendue de mon expertise.
         </p>
       </div>
+
       <img
         className={styles.logoImg}
         src={getImageUrl("logo/logoNoBg.png")}
         alt="mon logo"
       />
+
       <div className={styles.topBlur} />
       <div className={styles.bottomBlur} />
     </section>

@@ -1,6 +1,7 @@
 import styles from "./Experience.module.css";
 import { getImageUrl } from "../../utils";
 import useFetch from "../useFetch";
+import Fade from "react-reveal/Fade";
 
 const Experience = () => {
   // Utilisation du hook personnalisé useFetch pour récupérer les données de la collection "history".
@@ -32,45 +33,47 @@ const Experience = () => {
     return <p className={styles.errorContainer}>{skillsError}</p>;
   return (
     <section className={styles.container} id="Experience">
-      <h2 className={styles.title}>Expérience</h2>
-      <div className={styles.content}>
-        <div className={styles.skills}>
-          {/* Itère sur l'array `skills` et rend un div pour chaque élément. */}
-          {skills.map((skill, id) => {
-            return (
-              <div key={id} className={styles.skill}>
-                <div className={styles.skillImageContainer}>
-                  <img src={getImageUrl(skill.imageSrc)} alt={skill.title} />
+      <Fade bottom duration={1000} delay={500}>
+        <h2 className={styles.title}>Expérience</h2>
+        <div className={styles.content}>
+          <div className={styles.skills}>
+            {/* Itère sur l'array `skills` et rend un div pour chaque élément. */}
+            {skills.map((skill, id) => {
+              return (
+                <div key={id} className={styles.skill}>
+                  <div className={styles.skillImageContainer}>
+                    <img src={getImageUrl(skill.imageSrc)} alt={skill.title} />
+                  </div>
+                  <p>{skill.title}</p>
                 </div>
-                <p>{skill.title}</p>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+          <ul className={styles.history}>
+            {/* Itère sur l'array `history` et rend un élément de liste pour chaque élément. */}
+            {history.map((historyItem, id) => {
+              return (
+                <li key={id} className={styles.historyItem}>
+                  <img
+                    className={styles.historyImage}
+                    src={getImageUrl(historyItem.imageSrc)}
+                    alt={`${historyItem.organisation} Logo`}
+                  />
+                  <div className={styles.historyItemDetails}>
+                    <h3>{`${historyItem.role}, ${historyItem.organisation}`}</h3>
+                    <p>{`${historyItem.startDate} - ${historyItem.endDate}`}</p>
+                    <ul>
+                      {historyItem.experiences.map((experience, id) => {
+                        return <li key={id}>{experience}</li>;
+                      })}
+                    </ul>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
         </div>
-        <ul className={styles.history}>
-          {/* Itère sur l'array `history` et rend un élément de liste pour chaque élément. */}
-          {history.map((historyItem, id) => {
-            return (
-              <li key={id} className={styles.historyItem}>
-                <img
-                  className={styles.historyImage}
-                  src={getImageUrl(historyItem.imageSrc)}
-                  alt={`${historyItem.organisation} Logo`}
-                />
-                <div className={styles.historyItemDetails}>
-                  <h3>{`${historyItem.role}, ${historyItem.organisation}`}</h3>
-                  <p>{`${historyItem.startDate} - ${historyItem.endDate}`}</p>
-                  <ul>
-                    {historyItem.experiences.map((experience, id) => {
-                      return <li key={id}>{experience}</li>;
-                    })}
-                  </ul>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      </Fade>
     </section>
   );
 };

@@ -7,13 +7,13 @@ const Navbar = () => {
 
   return (
     <nav className={styles.navbar}>
-      <a className={styles.title}>
+      <div className={styles.title}>
         <img
           className={styles.logoHeader}
           src={getImageUrl("logo/logoNoBg.png")}
           alt="mon logo"
         />
-      </a>
+      </div>
       <div className={styles.menu}>
         <img
           className={styles.menuBtn}
@@ -29,16 +29,16 @@ const Navbar = () => {
           className={`${styles.menuItems} ${menuOpen && styles.menuOpen}`}
           onClick={() => setMenuOpen(false)}
         >
-          <li>
+          <li className={styles.link}>
             <a href="#about">A propos</a>
           </li>
-          <li>
+          <li className={styles.link}>
             <a href="#Experience">Expérience</a>
           </li>
-          <li>
+          <li className={styles.link}>
             <a href="#projects">Projets</a>
           </li>
-          <li>
+          <li className={styles.link}>
             <a href="#contact">Contact</a>
           </li>
         </ul>

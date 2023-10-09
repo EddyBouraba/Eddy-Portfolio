@@ -11,22 +11,33 @@ function useFetch(collectionName) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Essayer de récupérer les documents de la collection spécifiée.
-        const snapshot = await getDocs(collection(db, collectionName));
+        // Vérifier d'abord si les données sont présentes dans le cache local.
+        const cachedData = localStorage.getItem(collectionName);
 
-        // Convertir le snapshot en tableau de données.
-        const allData = snapshot.docs.map((doc) => doc.data());
-        setData(allData);
-        // Mettre à jour l'état `loading` pour indiquer que le chargement est terminé.
-        setLoading(false);
+        if (cachedData) {
+          // Si les données sont dans le cache, les utiliser.
+          setData(JSON.parse(cachedData));
+          setLoading(false);
+        } else {
+          // Sinon, effectuer la requête à la base de données Firebase.
+          const snapshot = await getDocs(collection(db, collectionName));
+          const allData = snapshot.docs.map((doc) => doc.data());
+          setData(allData);
+
+          // Stocker les données dans le cache local.
+          localStorage.setItem(collectionName, JSON.stringify(allData));
+
+          setLoading(false);
+        }
       } catch (error) {
-        // En cas d'erreur, mettre à jour l'état `error` avec le message d'erreur.
         setError(error.message);
         setLoading(false);
       }
     };
+
     fetchData();
-  }, [collectionName]); // Réexécuter `useEffect` si `collectionName` change.
+  }, [collectionName]);
+
   return { data, loading, error };
 }
 export default useFetch;

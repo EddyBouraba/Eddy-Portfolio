@@ -1,16 +1,29 @@
-// Import des dépendances nécessaires et des styles
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import styles from "./Projects.module.css";
 import ProjectCard from "./ProjectCard";
-import useFetch from "../useFetch"; // Import du custom hook
+import useFetch from "../useFetch";
 
 const Projects = () => {
-  // Utilisation du custom hook pour récupérer les projets
   const { data: projects, loading, error } = useFetch("projects");
-
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  // Si les données sont en cours de chargement, affiche un spinner
+  // Utilisez useMemo pour mémoriser la liste filtrée en dehors de toutes les conditions
+  const filteredProjects = useMemo(() => {
+    if (loading) {
+      return []; // Retournez une liste vide pendant le chargement
+    }
+
+    if (error) {
+      return []; // Retournez une liste vide en cas d'erreur
+    }
+
+    if (selectedCategory === "All") {
+      return projects;
+    }
+
+    return projects.filter((project) => project.categorie === selectedCategory);
+  }, [loading, error, projects, selectedCategory]);
+
   if (loading) {
     return (
       <div className={styles.spinnerContainer}>
@@ -19,22 +32,14 @@ const Projects = () => {
     );
   }
 
-  // Si une erreur s'est produite pendant le chargement des données
   if (error) {
     return <p className={styles.errorContainer}>{error}</p>;
   }
 
-  // Extraction des catégories uniques depuis les projets
   const categorie = [
     "All",
     ...new Set(projects.map((project) => project.categorie)),
   ];
-
-  // Filtrage des projets en fonction de la catégorie sélectionnée
-  const filteredProjects =
-    selectedCategory === "All"
-      ? projects
-      : projects.filter((project) => project.categorie === selectedCategory);
 
   return (
     <section className={styles.container} id="projects">
@@ -44,14 +49,12 @@ const Projects = () => {
           <h3>Filtres</h3>
           <form className={styles.categories}>
             {categorie.map((categorie, index) => (
-              // Pour chaque catégorie, crée un bouton radio
               <div className={`${styles["radio-button"]}`} key={index}>
                 <input
                   type="radio"
                   id={`radio-${index}`}
                   name="category"
                   value={categorie}
-                  // Lors du changement de sélection, met à jour la catégorie sélectionnée
                   onChange={() => setSelectedCategory(categorie)}
                 />
                 <label htmlFor={`radio-${index}`}>{categorie}</label>
@@ -60,7 +63,6 @@ const Projects = () => {
           </form>
         </div>
         <div className={styles.projects}>
-          {/* Affiche chaque projet filtré à l'aide du composant ProjectCard */}
           {filteredProjects.map((project, id) => (
             <ProjectCard key={id} project={project} />
           ))}
@@ -70,5 +72,4 @@ const Projects = () => {
   );
 };
 
-// Export du composant pour utilisation dans d'autres parties de l'application
 export default Projects;
